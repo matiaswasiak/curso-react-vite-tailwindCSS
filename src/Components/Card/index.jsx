@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { ShoppingCartContext } from "../../Context";
 import PropTypes from "prop-types";
 
 const Card = ({ data }) => {
+  const { count, setCount } = useContext(ShoppingCartContext);
   const [imageError, setImageError] = useState(false);
 
   const handleImageError = () => {
@@ -24,7 +26,10 @@ const Card = ({ data }) => {
           alt={data.title}
           onError={handleImageError}
         />
-        <div className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1">
+        <div
+          className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1"
+          onClick={() => setCount(count + 1)}
+        >
           +
         </div>
       </figure>
