@@ -7,6 +7,9 @@ const ShoppingCartProvider = ({ children }) => {
   // Shopping Cart - Increment quantity
   const [count, setCount] = useState(0);
 
+  // Shopping Cart - Add product
+  const [cartProducts, setCartProducts] = useState([]);
+
   // Product Detail - Open and close
   const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
   const toggleProductDetail = () =>
@@ -24,6 +27,8 @@ const ShoppingCartProvider = ({ children }) => {
         toggleProductDetail,
         productToShow,
         setProductToShow,
+        cartProducts,
+        setCartProducts,
       }}
     >
       {children}
