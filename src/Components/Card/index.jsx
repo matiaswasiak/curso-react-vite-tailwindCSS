@@ -4,18 +4,30 @@ import PropTypes from "prop-types";
 import PlusIcon from "../../../assets/icons/PlusIcon";
 
 const Card = ({ data }) => {
-  const { count, setCount, toggleProductDetail } =
-    useContext(ShoppingCartContext);
+  const {
+    count,
+    setCount,
+    isProductDetailOpen,
+    toggleProductDetail,
+    setProductToShow,
+  } = useContext(ShoppingCartContext);
   const [imageError, setImageError] = useState(false);
 
   const handleImageError = () => {
     setImageError(true);
   };
 
+  const showProductDetail = (productDetail) => {
+    setProductToShow(productDetail);
+    if (!isProductDetailOpen) {
+      toggleProductDetail();
+    }
+  };
+
   return (
     <div
       className="bg-white cursor-pointer w-56 h-60 rounded-lg"
-      onClick={() => toggleProductDetail()}
+      onClick={() => showProductDetail(data)}
     >
       <figure className="relative mb-2 w-full h-4/5">
         <span className="absolute bottom-0 left-0 bg-white/60 rounded-lg text-black text-xs m-2 px-3 py-0.5">

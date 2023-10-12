@@ -3,7 +3,7 @@ import { ShoppingCartContext } from "../../Context";
 import CloseIcon from "../../../assets/icons/CloseIcon";
 
 const ProductDetail = () => {
-  const { isProductDetailOpen, toggleProductDetail } =
+  const { isProductDetailOpen, toggleProductDetail, productToShow } =
     useContext(ShoppingCartContext);
 
   return (
@@ -18,6 +18,20 @@ const ProductDetail = () => {
           <CloseIcon className="h-6 w-6 text-black cursor-pointer" />
         </div>
       </div>
+      <figure className="px-6">
+        <img
+          className="w-full h-full rounded-lg object-cover"
+          src={productToShow.images}
+          alt={productToShow.title}
+        />
+      </figure>
+      <p className="flex flex-col p-6">
+        <span className="font-medium text-2xl mb-2">
+          ${productToShow.price}
+        </span>
+        <span className="font-medium text-md">{productToShow.title}</span>
+        <span className="font-light text-sm">{productToShow.description}</span>
+      </p>
     </aside>
   );
 };

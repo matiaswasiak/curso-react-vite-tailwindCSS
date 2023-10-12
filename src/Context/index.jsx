@@ -4,11 +4,16 @@ import PropTypes from "prop-types";
 const ShoppingCartContext = createContext();
 
 const ShoppingCartProvider = ({ children }) => {
+  // Shopping Cart - Increment quantity
   const [count, setCount] = useState(0);
-  const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
 
+  // Product Detail - Open and close
+  const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
   const toggleProductDetail = () =>
     setIsProductDetailOpen(!isProductDetailOpen);
+
+  // Product Detail - Show product
+  const [productToShow, setProductToShow] = useState({});
 
   return (
     <ShoppingCartContext.Provider
@@ -17,6 +22,8 @@ const ShoppingCartProvider = ({ children }) => {
         setCount,
         isProductDetailOpen,
         toggleProductDetail,
+        productToShow,
+        setProductToShow,
       }}
     >
       {children}
