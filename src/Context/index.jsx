@@ -5,12 +5,18 @@ const ShoppingCartContext = createContext();
 
 const ShoppingCartProvider = ({ children }) => {
   const [count, setCount] = useState(0);
+  const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
+
+  const toggleProductDetail = () =>
+    setIsProductDetailOpen(!isProductDetailOpen);
 
   return (
     <ShoppingCartContext.Provider
       value={{
         count,
         setCount,
+        isProductDetailOpen,
+        toggleProductDetail,
       }}
     >
       {children}
