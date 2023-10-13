@@ -15,6 +15,11 @@ const ShoppingCartProvider = ({ children }) => {
   const toggleProductDetail = () =>
     setIsProductDetailOpen(!isProductDetailOpen);
 
+  // Checkot Side Menu - Open and close
+  const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false);
+  const toggleCheckoutSideMenu = () =>
+    setIsCheckoutSideMenuOpen(!isCheckoutSideMenuOpen);
+
   // Product Detail - Show product
   const [productToShow, setProductToShow] = useState({});
 
@@ -29,6 +34,8 @@ const ShoppingCartProvider = ({ children }) => {
         setProductToShow,
         cartProducts,
         setCartProducts,
+        isCheckoutSideMenuOpen,
+        toggleCheckoutSideMenu,
       }}
     >
       {children}
