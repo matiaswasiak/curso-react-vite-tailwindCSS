@@ -11,7 +11,7 @@ const CheckoutSideMenu = () => {
     <aside
       className={`${
         isCheckoutSideMenuOpen ? "flex" : "hidden"
-      }  flex-col fixed top-[68px] right-0 border bg-white border-black rounded-lg w-[360px] h-[calc(100vh-68px)] overflow-scroll overflow-x-hidden`}
+      }  flex-col fixed top-[68px] right-0 border bg-white border-black rounded-lg w-[360px] h-[calc(100vh-68px)] `}
     >
       <div className="flex justify-between items-center p-6">
         <h2 className="font-medium text-xl">My Order</h2>
@@ -19,7 +19,7 @@ const CheckoutSideMenu = () => {
           <CloseIcon className="h-6 w-6 text-black cursor-pointer" />
         </div>
       </div>
-      <div className="px-6">
+      <div className="px-6 overflow-scroll overflow-x-hidden">
         {cartProducts.map((product, index) => (
           <OrderCard
             key={index}
