@@ -12,6 +12,8 @@ const Card = ({ data }) => {
     setProductToShow,
     cartProducts,
     setCartProducts,
+    isCheckoutSideMenuOpen,
+    toggleCheckoutSideMenu,
   } = useContext(ShoppingCartContext);
   const [imageError, setImageError] = useState(false);
 
@@ -24,11 +26,19 @@ const Card = ({ data }) => {
     if (!isProductDetailOpen) {
       toggleProductDetail();
     }
+    if (isCheckoutSideMenuOpen) {
+      toggleCheckoutSideMenu();
+    }
   };
 
-  const addProductsToCart = (productData) => {
+  const addProductsToCart = (event, productData) => {
+    event.stopPropagation();
     setCount(count + 1);
-    setCartProducts([...cartProducts, ...productData]);
+    setCartProducts([...cartProducts, productData]);
+    toggleCheckoutSideMenu();
+    if (isProductDetailOpen) {
+      toggleProductDetail();
+    }
   };
 
   return (
@@ -52,9 +62,8 @@ const Card = ({ data }) => {
         />
         <div
           className="absolute top-0 right-0 flex justify-center items-center bg-white w-6 h-6 rounded-full m-2 p-1"
-          onClick={(e) => {
-            e.stopPropagation();
-            addProductsToCart(data);
+          onClick={(event) => {
+            addProductsToCart(event, data);
           }}
         >
           <PlusIcon className="h-6 w-6 text-black" />

@@ -9,6 +9,7 @@ import { SignIn } from "../SignIn";
 import "./../../App.css";
 import { Navbar } from "../../Components/Navbar";
 import { Layout } from "../../Components/Layout";
+import { CheckoutSideMenu } from "../../Components/CheckoutSideMenu";
 
 const AppRoutes = () => {
   let routes = useRoutes([
@@ -45,9 +46,10 @@ const App = () => {
   return (
     <ShoppingCartProvider>
       <BrowserRouter>
-        <Navbar />
         <Layout>
+          <Navbar />
           <AppRoutes />
+          <CheckoutSideMenu />
         </Layout>
       </BrowserRouter>
     </ShoppingCartProvider>
