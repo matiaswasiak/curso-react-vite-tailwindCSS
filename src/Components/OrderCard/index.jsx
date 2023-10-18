@@ -1,7 +1,7 @@
 import CloseIcon from "../../../assets/icons/CloseIcon";
 import PropTypes from "prop-types";
 
-const OrderCard = ({ title, imageUrl, price }) => {
+const OrderCard = ({ title, imageUrl, price, handleDelete }) => {
   return (
     <div className="flex justify-between items-center mb-3">
       <div className="flex items-center gap-2">
@@ -16,7 +16,10 @@ const OrderCard = ({ title, imageUrl, price }) => {
       </div>
       <div className="flex items-center gap-2">
         <p className="text-lg font-medium">{price}</p>
-        <CloseIcon className="h-6 w-6 text-black cursor-pointer" />
+        <CloseIcon
+          className="h-6 w-6 text-black cursor-pointer"
+          onClick={handleDelete}
+        />
       </div>
     </div>
   );
@@ -26,6 +29,7 @@ OrderCard.propTypes = {
   title: PropTypes.string.isRequired,
   imageUrl: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
+  handleDelete: PropTypes.func.isRequired,
 };
 
 export { OrderCard };

@@ -4,8 +4,19 @@ import { OrderCard } from "../OrderCard";
 import CloseIcon from "../../../assets/icons/CloseIcon";
 
 const CheckoutSideMenu = () => {
-  const { isCheckoutSideMenuOpen, toggleCheckoutSideMenu, cartProducts } =
-    useContext(ShoppingCartContext);
+  const {
+    isCheckoutSideMenuOpen,
+    toggleCheckoutSideMenu,
+    cartProducts,
+    setCartProducts,
+  } = useContext(ShoppingCartContext);
+
+  const handleDelete = (id) => {
+    const filteredProducts = cartProducts.filter(
+      (product) => product.id !== id
+    );
+    setCartProducts(filteredProducts);
+  };
 
   return (
     <aside
@@ -19,13 +30,17 @@ const CheckoutSideMenu = () => {
           <CloseIcon className="h-6 w-6 text-black cursor-pointer" />
         </div>
       </div>
-      <div className="px-6 overflow-scroll overflow-x-hidden">
+      <div className="px-6  overflow-y-auto">
+        {cartProducts.length === 0 && (
+          <p className="text-center ">Your cart is empty</p>
+        )}
         {cartProducts.map((product, index) => (
           <OrderCard
             key={index}
             title={product.title}
             imageUrl={product.images[0]}
             price={product.price}
+            handleDelete={() => handleDelete(product.id)}
           />
         ))}
       </div>
