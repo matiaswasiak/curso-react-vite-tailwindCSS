@@ -35,7 +35,9 @@ const Card = ({ data }) => {
     event.stopPropagation();
     setCount(count + 1);
     setCartProducts([...cartProducts, productData]);
-    toggleCheckoutSideMenu();
+    if (!isCheckoutSideMenuOpen) {
+      toggleCheckoutSideMenu();
+    }
     if (isProductDetailOpen) {
       toggleProductDetail();
     }
