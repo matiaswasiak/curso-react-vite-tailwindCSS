@@ -10,6 +10,9 @@ const ShoppingCartProvider = ({ children }) => {
   // Shopping Cart - Add product
   const [cartProducts, setCartProducts] = useState([]);
 
+  // Shopping Cart - Order
+  const [order, setOrder] = useState([]);
+
   // Product Detail - Open and close
   const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
   const toggleProductDetail = () =>
