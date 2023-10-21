@@ -20,6 +20,7 @@ const ShoppingCartProvider = ({ children }) => {
 
   // Checkot Side Menu - Open and close
   const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false);
+
   const toggleCheckoutSideMenu = () =>
     setIsCheckoutSideMenuOpen(!isCheckoutSideMenuOpen);
 
