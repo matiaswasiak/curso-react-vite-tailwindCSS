@@ -10,6 +10,8 @@ const CheckoutSideMenu = () => {
     toggleCheckoutSideMenu,
     cartProducts,
     setCartProducts,
+    order,
+    setOrder,
   } = useContext(ShoppingCartContext);
 
   const handleDelete = (id) => {
@@ -17,6 +19,18 @@ const CheckoutSideMenu = () => {
       (product) => product.id !== id
     );
     setCartProducts(filteredProducts);
+  };
+
+  const handleCheckout = () => {
+    const orderToAdd = {
+      date: new Date(),
+      products: cartProducts,
+      totalProducts: cartProducts.length,
+      totalPrice: totalPrice(cartProducts),
+    };
+
+    setOrder([...order, orderToAdd]);
+    setCartProducts([]);
   };
 
   return (
@@ -31,7 +45,7 @@ const CheckoutSideMenu = () => {
           <CloseIcon className="h-6 w-6 text-black cursor-pointer" />
         </div>
       </div>
-      <div className="px-6  overflow-y-auto">
+      <div className="px-6  overflow-y-auto flex-1">
         {cartProducts.length === 0 && (
           <p className="text-center ">Your cart is empty</p>
         )}
@@ -45,13 +59,19 @@ const CheckoutSideMenu = () => {
           />
         ))}
       </div>
-      <div className="px-6">
-        <p className="flex justify-between items-center pt-3">
+      <div className="px-6 mb-6">
+        <p className="flex justify-between items-center pt-3 mb-2">
           <span className="font-light">Total:</span>
           <span className="font-medium text-2xl">
             ${totalPrice(cartProducts)}
           </span>
         </p>
+        <button
+          className="bg-black py-3 text-white w-full rounded-lg"
+          onClick={() => handleCheckout()}
+        >
+          Checkout
+        </button>
       </div>
     </aside>
   );

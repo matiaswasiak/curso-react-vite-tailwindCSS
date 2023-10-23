@@ -9,7 +9,7 @@ function getNavLinkClassName({ isActive }) {
 }
 
 const Navbar = () => {
-  const { count } = useContext(ShoppingCartContext);
+  const { cartProducts } = useContext(ShoppingCartContext);
 
   return (
     <nav className="flex justify-between items-center fixed z-10 top-0 w-full py-5 px-8 text-sm font-light bg-white">
@@ -68,7 +68,7 @@ const Navbar = () => {
         </li>
         <li className="flex items-center">
           <ShoppingBag className="h-6 w-6 text-black" />
-          <div>{count}</div>
+          <div>{cartProducts.length} </div>
         </li>
       </ul>
     </nav>

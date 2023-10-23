@@ -6,8 +6,6 @@ import CheckIcon from "../../../assets/icons/CheckIcon";
 
 const Card = ({ data }) => {
   const {
-    count,
-    setCount,
     isProductDetailOpen,
     toggleProductDetail,
     setProductToShow,
@@ -34,7 +32,6 @@ const Card = ({ data }) => {
 
   const addProductsToCart = (event, productData) => {
     event.stopPropagation();
-    setCount(count + 1);
     setCartProducts([...cartProducts, productData]);
     if (!isCheckoutSideMenuOpen) {
       toggleCheckoutSideMenu();
