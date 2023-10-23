@@ -16,10 +16,12 @@ const OrderCard = ({ title, imageUrl, price, handleDelete }) => {
       </div>
       <div className="flex items-center gap-2">
         <p className="text-lg font-medium">{price}</p>
-        <CloseIcon
-          className="h-6 w-6 text-black cursor-pointer"
-          onClick={handleDelete}
-        />
+        {handleDelete && (
+          <CloseIcon
+            className="h-6 w-6 text-black cursor-pointer"
+            onClick={handleDelete}
+          />
+        )}
       </div>
     </div>
   );
@@ -29,7 +31,7 @@ OrderCard.propTypes = {
   title: PropTypes.string.isRequired,
   imageUrl: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
-  handleDelete: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func,
 };
 
 export { OrderCard };
