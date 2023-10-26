@@ -1,11 +1,17 @@
 import { useContext } from "react";
 import { ShoppingCartContext } from "../../Context";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { OrderCard } from "../../Components/OrderCard";
 import ArrowLeft from "../../../assets/icons/ArrowLeft";
 
 function MyOrder() {
   const { order } = useContext(ShoppingCartContext);
+  const { id } = useParams();
+  console.log(id, "ORDER ID PARAMS");
+  const idNumber = parseInt(id);
+
+  console.log(order, "ORDER DETAIL");
+  console.log(idNumber, "ORDER ID");
 
   return (
     <>
@@ -21,14 +27,16 @@ function MyOrder() {
             You don&apos;t have any orders yet. <Link to="/">Go shopping!</Link>
           </p>
         )}
-        {order.slice(-1)[0].products.map((product, index) => (
-          <OrderCard
-            key={index}
-            title={product.title}
-            imageUrl={product.images[0]}
-            price={product.price}
-          />
-        ))}
+        {order?.[isNaN(idNumber) ? order.length - 1 : idNumber].products.map(
+          (product, index) => (
+            <OrderCard
+              key={index}
+              title={product.title}
+              imageUrl={product.images[0]}
+              price={product.price}
+            />
+          )
+        )}
       </div>
     </>
   );
