@@ -9,7 +9,7 @@ function MyOrders() {
   return (
     <>
       <div className="flex justify-center items-center relative w-80 mb-6">
-        <h1>My Orders</h1>
+        <h1 className="font-medium text-xl">My Orders</h1>
       </div>
       {order.map(({ totalPrice, totalProducts }, index) => (
         <Link key={index} to={`/my-orders/${index}`}>

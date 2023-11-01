@@ -15,7 +15,7 @@ function MyOrder() {
 
   return (
     <>
-      <div className="flex justify-center items-center relative w-80">
+      <div className="flex justify-center items-center relative w-80 mb-6">
         <Link to="/my-orders" className="absolute left-0">
           <ArrowLeft className="h-6 w-6 text-black cursor-pointer" />
         </Link>
