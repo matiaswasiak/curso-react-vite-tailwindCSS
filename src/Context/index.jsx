@@ -28,9 +28,13 @@ const ShoppingCartProvider = ({ children }) => {
   // Get products
   const [items, setItems] = useState([]);
 
-  // Get products - Search by title
-  const [searchByTitle, setSearchByTitle] = useState("");
+  // Get products - Filter by title
+  const [filteredItems, setFilteredItems] = useState([]);
 
+  // Get products - Search by [title or category]
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // Get products - Fetch data
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -47,6 +51,20 @@ const ShoppingCartProvider = ({ children }) => {
     fetchData();
   }, []);
 
+  // Get products - Filter by title or category
+  const filterItems = (items, searchTerm) => {
+    const lowerCaseSearch = searchTerm.toLowerCase();
+    return items.filter(
+      (item) =>
+        item.title.toLowerCase().includes(lowerCaseSearch) ||
+        item.category.name.toLowerCase().includes(lowerCaseSearch)
+    );
+  };
+
+  useEffect(() => {
+    setFilteredItems(filterItems(items, searchTerm));
+  }, [items, searchTerm]);
+
   return (
     <ShoppingCartContext.Provider
       value={{
@@ -61,8 +79,9 @@ const ShoppingCartProvider = ({ children }) => {
         order,
         setOrder,
         items,
-        searchByTitle,
-        setSearchByTitle,
+        searchTerm,
+        setSearchTerm,
+        filteredItems,
       }}
     >
       {children}

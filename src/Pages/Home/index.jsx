@@ -5,7 +5,10 @@ import { ProductDetail } from "../../Components/ProductDetail";
 import { ShoppingCartContext } from "../../Context";
 
 function Home() {
-  const { items, setSearchByTitle } = useContext(ShoppingCartContext);
+  const { items, setSearchTerm, searchTerm, filteredItems } =
+    useContext(ShoppingCartContext);
+
+  const results = searchTerm.length > 0 ? filteredItems : items;
 
   return (
     <Layout>
@@ -16,12 +19,17 @@ function Home() {
         type="text"
         placeholder="Search for products"
         className="rounded-lg border border-black w-80 p-4 mb-6 focus:outline-none"
-        onChange={(event) => setSearchByTitle(event.target.value)}
+        onChange={(event) => setSearchTerm(event.target.value)}
       />
       <div className="grid gap-4 grid-cols-4 w-full max-w-screen-lg">
-        {items.map((item) => (
+        {results.map((item) => (
           <Card key={item.id} data={item} />
         ))}
+        {results.length === 0 && (
+          <div className="flex items-center justify-center w-full col-span-4">
+            <h1 className="font-medium text-xl">No products found</h1>
+          </div>
+        )}
       </div>
       <ProductDetail />
     </Layout>
