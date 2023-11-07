@@ -1,4 +1,5 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { Card } from "../../Components/Card";
 import { Layout } from "../../Components/Layout";
 import { ProductDetail } from "../../Components/ProductDetail";
@@ -7,6 +8,17 @@ import { ShoppingCartContext } from "../../Context";
 function Home() {
   const { items, setSearchTerm, searchTerm, filteredItems } =
     useContext(ShoppingCartContext);
+
+  // useParams to get the category from the URL
+  const { category } = useParams();
+
+  useEffect(() => {
+    if (category !== undefined) {
+      setSearchTerm(category);
+    } else {
+      setSearchTerm("");
+    }
+  }, [category, setSearchTerm]);
 
   const results = searchTerm.length > 0 ? filteredItems : items;
 
